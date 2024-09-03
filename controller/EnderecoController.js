@@ -100,7 +100,7 @@ exports.saveApiEndereco = async (req, res) => {
         const cep = req.params.cep;
 
         const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
-    
+
         if (!cepRegex.test(cep)) {
             return res.status(400).send('CEP inválido');
         }
@@ -110,7 +110,7 @@ exports.saveApiEndereco = async (req, res) => {
         if (response.data.erro) { // O viaCep retorna esse parametro erro caso não encontre o cep
             return res.status(404).send('CEP não encontrado');
         }
-        
+
         const novoEndereco = await Endereco.create({
             Cep: response.data.cep,
             Logradouro: response.data.logradouro,
